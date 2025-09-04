@@ -1,70 +1,88 @@
 AI Hallucination Detector
 
-AI Hallucination Detector is an experimental project combining Java (Spring Boot) and Python (FastAPI).
-It provides a hybrid architecture where:
+AI Hallucination Detector is an experimental project combining Java (Spring Boot) and Python (FastAPI) to detect hallucinations in AI responses.
 
-Java Backend → Orchestrates requests, exposes the main REST API, integrates with databases and decision logic.
+Java Backend → Orchestrates requests, exposes REST API /verify, integrates with services and decision logic.
 
-Python Microservice → Processes NLP-related checks (currently mocked, with plans for claim extraction, embeddings, and fact-checking).
+Python Microservice → Handles NLP-based claim extraction, evidence retrieval, and verification (currently mocked).
 
-This modular design makes it scalable and ready to evolve into a complete fact-checking and response reliability system.
+The project is modular, scalable, and ready for real NLP integration, vector DB, and fact-checking.
 
 📂 Project Structure
 hallucination-detector/
-│
-├── java-backend/           # Spring Boot application
-│   └── src/main/java/com/triminds/factcheck/
-│       ├── controller/
-│       ├── service/
+├── README.md
+├── java-backend/
+│   ├── pom.xml
+│   └── src/
+│       ├── config/
+│       ├── controller/VerificationController.java
+│       ├── main/java/com/triminds/factcheck/FactCheckApplication.java
 │       ├── model/
-│       ├── repository/
-│       └── config/
-│
-├── python-ml/              # FastAPI microservice
-│   ├── app/
-│   │   ├── main.py
-│   │   ├── routers/
-│   │   ├── services/
-│   │   ├── models/
-│   │   └── config/
-│   ├── requirements.txt
-│   └── Dockerfile
-│
-└── README.md
+│       │   ├── Claim.java
+│       │   ├── Evidence.java
+│       │   ├── ResponseEvaluation.java
+│       │   ├── Verdict.java
+│       │   └── VerificationResult.java
+│       ├── repository/EvidenceRepository.java
+│       └── service/
+│           ├── ClaimExtractionService.java
+│           ├── DecisionService.java
+│           ├── OrchestrationService.java
+│           ├── RetrievalService.java
+│           ├── ScoringService.java
+│           └── VerificationService.java
+└── python-ml/
+    ├── Dockerfile
+    ├── app/
+    │   ├── config/
+    │   ├── main.py
+    │   ├── models/
+    │   ├── routers/
+    │   └── services/
+    └── requirements.txt
 
 🚀 Getting Started
-Java Backend
+1️⃣ Python Microservice
+
+Install dependencies and start the FastAPI server:
+
+cd python-ml
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+
+2️⃣ Java Backend
+
+Start Spring Boot:
+
 cd java-backend
 mvn spring-boot:run
 
-Python Microservice
-cd python-ml
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8001
+🔄 Usage
 
-🔄 Workflow
+Send a POST request to the Java backend:
 
-User sends text to Java Backend (/verify)
+curl -X POST http://localhost:8080/verify -H "Content-Type: application/json" -d "\"Sample claim text\""
 
-Java calls the Python microservice /nlp/verify
 
-Python returns claims & evidence (mocked for now)
+Java backend calls Python microservice /verify.
 
-Java evaluates response reliability
+Python returns claims & evidence (mocked for now).
 
-Result returned to user
+Java evaluates response reliability using ScoringService + DecisionService.
+
+Final ResponseEvaluation returned to user.
 
 📌 Roadmap
 
- Implement claim extraction (Python)
+ Implement real claim extraction in Python.
 
- Add evidence retrieval with vector DB
+ Integrate evidence retrieval with vector DB.
 
- Integrate NLI models for fact-checking
+ Add NLI models for fact-checking.
 
- Expand observability & logging
+ Expand logging & observability.
 
- IDE/DB plugins for practical integration
+ Explore IDE/DB plugins for integration.
 
 🛠️ Tech Stack
 

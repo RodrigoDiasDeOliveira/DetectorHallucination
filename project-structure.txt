@@ -1,0 +1,41 @@
+.
+├── README.md
+├── java-backend
+│   ├── pom.xml
+│   └── src
+│       ├── config
+│       ├── controller
+│       │   └── VerificationController.java
+│       ├── main
+│       │   └── java
+│       │       └── com
+│       │           └── triminds
+│       │               └── factcheck
+│       │                   └── FactCheckApplication.java
+│       ├── model
+│       │   ├── Claim.java
+│       │   ├── Evidence.java
+│       │   ├── ResponseEvaluation.java
+│       │   ├── Verdict.java
+│       │   └── VerificationResult.java
+│       ├── repository
+│       │   └── EvidenceRepository.java
+│       └── service
+│           ├── ClaimExtractionService.java
+│           ├── DecisionService.java
+│           ├── OrchestrationService.java
+│           ├── RetrievalService.java
+│           ├── ScoringService.java
+│           └── VerificationService.java
+├── project-structure.txt
+└── python-ml
+    ├── Dockerfile
+    ├── app
+    │   ├── config
+    │   ├── main.py
+    │   ├── models
+    │   ├── routers
+    │   └── services
+    └── requirements.txt
+
+19 directories, 20 files
