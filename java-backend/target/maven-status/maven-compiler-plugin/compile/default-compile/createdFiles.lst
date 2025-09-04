@@ -1,0 +1,14 @@
+com/triminds/factcheck/service/ScoringService.class
+com/triminds/factcheck/model/Claim.class
+com/triminds/factcheck/service/OrchestrationService.class
+com/triminds/factcheck/controller/VerificationController.class
+com/triminds/factcheck/FactCheckApplication.class
+com/triminds/factcheck/service/ClaimExtractionService.class
+com/triminds/factcheck/model/Verdict.class
+com/triminds/factcheck/service/DecisionService.class
+com/triminds/factcheck/service/VerificationService.class
+com/triminds/factcheck/model/Evidence.class
+com/triminds/factcheck/repository/EvidenceRepository.class
+com/triminds/factcheck/service/RetrievalService.class
+com/triminds/factcheck/model/ResponseEvaluation.class
+com/triminds/factcheck/model/VerificationResult.class

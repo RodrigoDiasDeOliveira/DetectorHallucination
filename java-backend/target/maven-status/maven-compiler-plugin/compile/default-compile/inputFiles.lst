@@ -1,0 +1,14 @@
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/model/Verdict.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/service/DecisionService.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/service/VerificationService.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/service/ClaimExtractionService.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/model/VerificationResult.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/service/ScoringService.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/model/ResponseEvaluation.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/FactCheckApplication.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/service/RetrievalService.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/controller/VerificationController.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/service/OrchestrationService.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/repository/EvidenceRepository.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/model/Claim.java
+/workspaces/DetectorHallucination/java-backend/src/main/java/com/triminds/factcheck/model/Evidence.java

@@ -11,49 +11,54 @@ The project is modular, scalable, and ready for real NLP integration, vector DB,
 📂 Project Structure
 hallucination-detector/
 ├── README.md
+├── docker-compose.yml
 ├── java-backend/
+│   ├── Dockerfile
 │   ├── pom.xml
-│   └── src/
-│       ├── config/
-│       ├── controller/VerificationController.java
-│       ├── main/java/com/triminds/factcheck/FactCheckApplication.java
-│       ├── model/
-│       │   ├── Claim.java
-│       │   ├── Evidence.java
-│       │   ├── ResponseEvaluation.java
-│       │   ├── Verdict.java
-│       │   └── VerificationResult.java
-│       ├── repository/EvidenceRepository.java
-│       └── service/
-│           ├── ClaimExtractionService.java
-│           ├── DecisionService.java
-│           ├── OrchestrationService.java
-│           ├── RetrievalService.java
-│           ├── ScoringService.java
-│           └── VerificationService.java
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controller/VerificationController.java
+│   │   ├── main/java/com/triminds/factcheck/FactCheckApplication.java
+│   │   ├── model/
+│   │   │   ├── Claim.java
+│   │   │   ├── Evidence.java
+│   │   │   ├── ResponseEvaluation.java
+│   │   │   ├── Verdict.java
+│   │   │   └── VerificationResult.java
+│   │   ├── repository/EvidenceRepository.java
+│   │   └── service/
+│   │       ├── ClaimExtractionService.java
+│   │       ├── DecisionService.java
+│   │       ├── OrchestrationService.java
+│   │       ├── RetrievalService.java
+│   │       ├── ScoringService.java
+│   │       └── VerificationService.java
+│   └── src/test/java/com/triminds/factcheck/
+│       ├── service/
+│       │   ├── VerificationServiceTest.java
+│       │   ├── ScoringServiceTest.java
+│       │   └── DecisionServiceTest.java
+│       └── controller/VerificationControllerTest.java
 └── python-ml/
     ├── Dockerfile
-    ├── app/
-    │   ├── config/
-    │   ├── main.py
-    │   ├── models/
-    │   ├── routers/
-    │   └── services/
-    └── requirements.txt
+    ├── requirements.txt
+    └── app/
+        ├── config/
+        ├── main.py
+        ├── models/
+        ├── routers/
+        ├── services/
+        └── tests/
+            ├── test_main.py
+            └── test_services.py
 
 🚀 Getting Started
 1️⃣ Python Microservice
-
-Install dependencies and start the FastAPI server:
-
 cd python-ml
 pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
 
 2️⃣ Java Backend
-
-Start Spring Boot:
-
 cd java-backend
 mvn spring-boot:run
 
@@ -66,28 +71,66 @@ curl -X POST http://localhost:8080/verify -H "Content-Type: application/json" -d
 
 Java backend calls Python microservice /verify.
 
-Python returns claims & evidence (mocked for now).
+Python returns claims & evidence (mocked).
 
 Java evaluates response reliability using ScoringService + DecisionService.
 
 Final ResponseEvaluation returned to user.
 
-📌 Roadmap
+🧪 Testing
+Java Backend
 
- Implement real claim extraction in Python.
+Run tests with Maven:
 
- Integrate evidence retrieval with vector DB.
+cd java-backend
+mvn test
 
- Add NLI models for fact-checking.
 
- Expand logging & observability.
+Unit tests: VerificationServiceTest, ScoringServiceTest, DecisionServiceTest
 
- Explore IDE/DB plugins for integration.
+Controller tests: VerificationControllerTest (MockMvc simulates API calls)
 
-🛠️ Tech Stack
+Python Microservice
 
-Java 21, Spring Boot, Maven
+Run tests with pytest:
 
-Python 3.11, FastAPI, Uvicorn
+cd python-ml/app
+pytest tests/
 
-Future: Hugging Face Transformers, Vector DB, PostgreSQL/Oracle
+
+Unit tests for services: test_services.py
+
+API tests for endpoints: test_main.py (FastAPI TestClient)
+
+🐳 Docker & Orchestration
+
+To run both services together using Docker:
+
+1️⃣ Build and start containers
+docker-compose up --build
+
+2️⃣ Access services
+
+Python Microservice → http://localhost:8000/verify
+
+Java Backend → http://localhost:8080/verify
+
+Note: In Docker Compose, the Java backend calls Python at http://python-ml:8000/verify.
+
+🔮 Future Enhancements
+
+Hugging Face Transformers
+
+Pre-trained NLP models for claim extraction, fact-checking, semantic scoring.
+
+Vector Database (Vector DB)
+
+Store and search embeddings of claims & evidence efficiently.
+
+Candidates: Weaviate, Pinecone, Milvus.
+
+PostgreSQL / Oracle Database
+
+Store structured data: claims, evidence, verification results, logs.
+
+Supports analytics, reporting, and observability.
