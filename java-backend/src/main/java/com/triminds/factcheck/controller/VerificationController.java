@@ -8,11 +8,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/verify")
 public class VerificationController {
+
     @Autowired
     private VerificationService verificationService;
 
     @GetMapping("/test")
     public String testEndpoint() {
         return "Verification Service is running!";
+    }
+
+    @PostMapping
+    public VerificationResult verifyClaim(@RequestBody String claimText) {
+        return verificationService.verify(claimText);
     }
 }

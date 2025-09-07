@@ -1,17 +1,19 @@
 package com.triminds.factcheck.service;
 
+import com.triminds.factcheck.model.Claim;
+import com.triminds.factcheck.model.Evidence;
 import com.triminds.factcheck.model.Verdict;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ScoringService {
 
-    public double scoreClaim(Verdict verdict) {
-        if (verdict == Verdict.SUPPORT) {
-            return 1.0;
-        } else if (verdict == Verdict.CONTRADICT) {
-            return 0.0;
+    public Verdict calculateVerdict(Claim claim, Evidence evidence) {
+        // TODO: implementar scoring real usando embeddings
+        // Por enquanto, placeholder simples
+        if (evidence.getText() == null || evidence.getText().isEmpty()) {
+            return Verdict.INCONCLUSIVE;
         }
-        return 0.5; // neutro
+        return Verdict.SUPPORT;
     }
 }
