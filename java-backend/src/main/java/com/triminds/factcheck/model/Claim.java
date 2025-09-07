@@ -1,19 +1,18 @@
 package com.triminds.factcheck.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class Claim {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String text;
-    private String metadata; // opcional
+    private float[] embedding;
+    private String source;
 
-    public Claim() {}
-
-    public Claim(String text, String metadata) {
-        this.text = text;
-        this.metadata = metadata;
-    }
-
-    public String getText() { return text; }
-    public void setText(String text) { this.text = text; }
-
-    public String getMetadata() { return metadata; }
-    public void setMetadata(String metadata) { this.metadata = metadata; }
+    // Getters e Setters
 }

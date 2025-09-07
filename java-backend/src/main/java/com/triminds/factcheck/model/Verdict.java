@@ -1,7 +1,8 @@
 package com.triminds.factcheck.model;
 
-public enum Verdict {
-    SUPPORT,
-    CONTRADICT,
-    INCONCLUSIVE
+public class Verdict {
+    private boolean isHallucination;
+    private String explanation;
+
+    // Getters e Setters
 }

@@ -1,41 +1,72 @@
-.
+hallucination-detector/
 ├── README.md
-├── java-backend
-│   ├── pom.xml
-│   └── src
-│       ├── config
-│       ├── controller
-│       │   └── VerificationController.java
-│       ├── main
-│       │   └── java
-│       │       └── com
-│       │           └── triminds
-│       │               └── factcheck
-│       │                   └── FactCheckApplication.java
-│       ├── model
-│       │   ├── Claim.java
-│       │   ├── Evidence.java
-│       │   ├── ResponseEvaluation.java
-│       │   ├── Verdict.java
-│       │   └── VerificationResult.java
-│       ├── repository
-│       │   └── EvidenceRepository.java
-│       └── service
-│           ├── ClaimExtractionService.java
-│           ├── DecisionService.java
-│           ├── OrchestrationService.java
-│           ├── RetrievalService.java
-│           ├── ScoringService.java
-│           └── VerificationService.java
-├── project-structure.txt
-└── python-ml
+├── docker-compose.yml
+├── java-backend/
+│   ├── Dockerfile
+│   ├── pom.xml
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/triminds/factcheck/
+│   │   │   │   ├── config/
+│   │   │   │   │   ├── WeaviateConfig.java
+│   │   │   │   │   └── DatabaseConfig.java
+│   │   │   │   ├── controller/
+│   │   │   │   │   └── VerificationController.java
+│   │   │   │   ├── main/java/com/triminds/factcheck/
+│   │   │   │   │   └── FactCheckApplication.java
+│   │   │   │   ├── model/
+│   │   │   │   │   ├── Claim.java
+│   │   │   │   │   ├── Evidence.java
+│   │   │   │   │   ├── ResponseEvaluation.java
+│   │   │   │   │   ├── Verdict.java
+│   │   │   │   │   └── VerificationResult.java
+│   │   │   │   ├── repository/
+│   │   │   │   │   ├── ClaimRepository.java
+│   │   │   │   │   ├── EvidenceRepository.java
+│   │   │   │   │   └── VerificationResultRepository.java
+│   │   │   │   ├── service/
+│   │   │   │   │   ├── impl/
+│   │   │   │   │   │   ├── ClaimExtractionServiceImpl.java
+│   │   │   │   │   │   ├── DecisionServiceImpl.java
+│   │   │   │   │   │   ├── OrchestrationServiceImpl.java
+│   │   │   │   │   │   ├── RetrievalServiceImpl.java
+│   │   │   │   │   │   ├── ScoringServiceImpl.java
+│   │   │   │   │   │   └── VerificationServiceImpl.java
+│   │   │   │   │   ├── ClaimExtractionService.java
+│   │   │   │   │   ├── DecisionService.java
+│   │   │   │   │   ├── OrchestrationService.java
+│   │   │   │   │   ├── RetrievalService.java
+│   │   │   │   │   ├── ScoringService.java
+│   │   │   │   │   └── VerificationService.java
+│   │   │   │   └── client/
+│   │   │   │       └── PythonClient.java
+│   │   │   └── resources/
+│   │   │       ├── application.properties
+│   │   │       └── logback-spring.xml
+│   │   └── test/java/com/triminds/factcheck/
+│   │       ├── service/
+│   │       │   ├── VerificationServiceTest.java
+│   │       │   ├── ScoringServiceTest.java
+│   │       │   ├── DecisionServiceTest.java
+│   │       │   ├── ClaimExtractionServiceTest.java
+│   │       │   └── RetrievalServiceTest.java
+│   │       └── controller/
+│   │           └── VerificationControllerTest.java
+└── python-ml/
     ├── Dockerfile
-    ├── app
-    │   ├── config
-    │   ├── main.py
-    │   ├── models
-    │   ├── routers
-    │   └── services
-    └── requirements.txt
-
-19 directories, 20 files
+    ├── requirements.txt
+    └── app/
+        ├── config/
+        ├── main.py
+        ├── models/
+        │   ├── claim.py
+        │   └── evidence.py
+        ├── routers/
+        │   └── verify.py
+        ├── services/
+        │   ├── claim_extraction.py
+        │   ├── fact_checking.py
+        │   └── semantic_scoring.py
+        └── tests/
+            ├── test_main.py
+            └── test_services.py

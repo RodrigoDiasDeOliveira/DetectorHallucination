@@ -1,29 +1,19 @@
 package com.triminds.factcheck.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class VerificationResult {
-    private Claim claim;
-    private Evidence evidence;
-    private String verdict;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long claimId;
     private double score;
+    private boolean isHallucination;
+    private String timestamp;
 
-    public VerificationResult() {}
-
-    public VerificationResult(Claim claim, Evidence evidence, String verdict, double score) {
-        this.claim = claim;
-        this.evidence = evidence;
-        this.verdict = verdict;
-        this.score = score;
-    }
-
-    public Claim getClaim() { return claim; }
-    public void setClaim(Claim claim) { this.claim = claim; }
-
-    public Evidence getEvidence() { return evidence; }
-    public void setEvidence(Evidence evidence) { this.evidence = evidence; }
-
-    public String getVerdict() { return verdict; }
-    public void setVerdict(String verdict) { this.verdict = verdict; }
-
-    public double getScore() { return score; }
-    public void setScore(double score) { this.score = score; }
+    // Getters e Setters
 }

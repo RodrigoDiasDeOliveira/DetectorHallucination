@@ -1,5 +1,9 @@
 fastapi
 uvicorn
+transformers
+torch
 pydantic
 pytest
-httpx
+numpy
+scipy 
+sentence-transformers

@@ -1,24 +1,18 @@
 package com.triminds.factcheck.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class Evidence {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String text;
+    private float[] embedding;
     private String source;
-    private String metadata;
 
-    public Evidence() {}
-
-    public Evidence(String text, String source, String metadata) {
-        this.text = text;
-        this.source = source;
-        this.metadata = metadata;
-    }
-
-    public String getText() { return text; }
-    public void setText(String text) { this.text = text; }
-
-    public String getSource() { return source; }
-    public void setSource(String source) { this.source = source; }
-
-    public String getMetadata() { return metadata; }
-    public void setMetadata(String metadata) { this.metadata = metadata; }
+    // Getters e Setters
 }

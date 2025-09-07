@@ -1,24 +1,21 @@
 package com.triminds.factcheck.controller;
 
-import com.triminds.factcheck.model.VerificationResult;
-import com.triminds.factcheck.service.VerificationService;
+import com.triminds.factcheck.model.ResponseEvaluation;
+import com.triminds.factcheck.service.OrchestrationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/verify")
 public class VerificationController {
-
     @Autowired
-    private VerificationService verificationService;
-
-    @GetMapping("/test")
-    public String testEndpoint() {
-        return "Verification Service is running!";
-    }
+    private OrchestrationService orchestrationService;
 
     @PostMapping
-    public VerificationResult verifyClaim(@RequestBody String claimText) {
-        return verificationService.verify(claimText);
+    public ResponseEvaluation verify(@RequestBody String llmResponse) {
+        return orchestrationService.verify(llmResponse);
     }
 }
