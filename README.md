@@ -287,3 +287,19 @@ Observability: Integrate Grafana for visualizing Prometheus metrics.
 Contributions are welcome! Please check the issues page for open tasks or submit a pull request. For major changes, open an issue first to discuss.
 📜 License
 This project is licensed under the MIT License - see the LICENSE file for details. Designed by Rodrigo Dias de Oliveira for TRIMINDS AI SOLUTIONS, with gratitude to the community and collaborators who helped shape this project.
+
+## Implementation status and evidence boundaries
+
+The repository contains Java and Python components and tests, but integration claims must be limited to the paths that are actually wired.
+
+| Area | Evidence in the inspected source | Current documentation status |
+|---|---|---|
+| Java verification API | `VerificationController.java` exposes `POST /verify` and delegates to orchestration. | Endpoint and orchestration path are present in source; end-to-end behavior was not verified by this documentation change. |
+| Python verification route | `python-ml/app/routers/verify.py` creates fixed mocked evidence before calculating the result. | Prototype/mock evidence path; not real-corpus fact verification. |
+| Weaviate retrieval | `RetrievalServiceImpl.java` issues a query but then returns an `Evidence` object with hardcoded mocked text rather than mapping the query result. | Retrieval integration is incomplete until result mapping and failure/empty-result behavior are implemented and tested. |
+| Embedding persistence | `VectorDatabaseService.java` logs the intended Weaviate endpoint and has a TODO for the real call. | Placeholder; this method does not currently evidence persistence of embeddings. |
+| Hugging Face client | `HuggingFaceService.java` performs an HTTP request and returns the raw response body. | Provider request path exists; response parsing and downstream embedding compatibility are not verified here. |
+| Automated tests | Java tests include mocked dependencies and expected neutral results. | Unit tests cover selected logic, but do not prove live Weaviate/Hugging Face/Python integration. |
+| Build artifacts | The repository tree includes root and Java `target/` outputs and JARs. | Review whether generated artifacts should be tracked and document the canonical build process. |
+
+Use explicit labels in feature descriptions: **implemented in source**, **unit-tested**, **integration-verified**, **mocked/placeholder**, and **planned/not verified**. A mock-based result must not be presented as an evidence-backed determination about a real-world claim.
